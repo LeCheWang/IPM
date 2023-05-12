@@ -24,7 +24,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiController {
-    String DOMAIN = "http://industrial.gorokiapp.com/api/";
+    String DOMAIN = "https://industrial.gorokiapp.com/api/";
     Gson gson =new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").setLenient().create();
 
     ApiController apiService = new Retrofit.Builder()

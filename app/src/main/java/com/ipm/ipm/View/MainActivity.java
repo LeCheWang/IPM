@@ -3,12 +3,11 @@ package com.ipm.ipm.View;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
 import com.ipm.ipm.R;
-import com.ipm.ipm.View.Fragment.ContactFragment.ContactFragment;
+import com.ipm.ipm.View.Fragment.IndustrialFragment.IndustrialFragment;
 import com.ipm.ipm.View.Fragment.HomeFragment.HomeFragment;
 import com.ipm.ipm.View.Fragment.UserFragment.UserFragment;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
@@ -37,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.home:
                     fragment = new HomeFragment();
                     break;
-                case R.id.contact:
-                    fragment = new ContactFragment();
+                case R.id.industrial:
+                    fragment = new IndustrialFragment();
                     break;
                 case R.id.user:
                     fragment = new UserFragment();

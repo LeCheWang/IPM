@@ -15,4 +15,6 @@
     <color name="text_factory_status_1">#F1B211</color>
     <color name="backgr_factory_status_2">#F4D6D8</color>
     <color name="text_factory_status_2">#F02B37</color>
+    <color name="xam">#FFFCFC</color>
+
 </resources>

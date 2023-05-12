@@ -1,4 +1,4 @@
-package com.ipm.ipm.View.Fragment.HomeFragment;
+package com.ipm.ipm.View.Fragment.IndustrialFragment;
 
 import com.ipm.ipm.Model.Industrial;
 

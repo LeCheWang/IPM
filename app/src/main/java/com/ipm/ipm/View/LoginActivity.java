@@ -11,12 +11,14 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ipm.ipm.Controller.ApiController;
+import com.ipm.ipm.Helper.SharedPreferencesHelper;
 import com.ipm.ipm.Model.Account;
 import com.ipm.ipm.Model.Response.LoginResponse;
 import com.ipm.ipm.R;
@@ -35,6 +37,9 @@ public class LoginActivity extends AppCompatActivity {
     Button btnSignIn;
     TextView tvSignUp;
     ImageView imgEye;
+    CheckBox cbSaveAccount;
+
+    SharedPreferencesHelper sharedPreferencesHelper;
 
     public boolean canLookPassword = false;
     public static String jwt;
@@ -44,7 +49,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+        sharedPreferencesHelper = new SharedPreferencesHelper(LoginActivity.this);
         refView();
+        Account account = sharedPreferencesHelper.getAccount();
+        edtEmail.setText(account.getEmail());
+        edtPassword.setText(account.getPassword());
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +65,10 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                         if (response.isSuccessful()){
                             jwt = response.body().getJwt();
+                            if (cbSaveAccount.isChecked()){
+                                sharedPreferencesHelper.saveJwt(jwt);
+                                sharedPreferencesHelper.saveAccount(email, password);
+                            }
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                         }else {
@@ -101,5 +114,6 @@ public class LoginActivity extends AppCompatActivity {
         btnSignIn = findViewById(R.id.btnSignIn);
         tvSignUp = findViewById(R.id.tvSignUp);
         imgEye = findViewById(R.id.imgEye);
+        cbSaveAccount = findViewById(R.id.cbSaveAccount);
     }
 }

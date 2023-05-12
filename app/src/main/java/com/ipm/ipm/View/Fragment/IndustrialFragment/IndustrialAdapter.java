@@ -1,4 +1,4 @@
-package com.ipm.ipm.View.Fragment.HomeFragment;
+package com.ipm.ipm.View.Fragment.IndustrialFragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

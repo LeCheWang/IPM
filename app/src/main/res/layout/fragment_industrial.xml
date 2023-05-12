@@ -14,7 +14,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
             <EditText
-                android:id="@+id/edtSearchFactory"
+                android:id="@+id/edtSearchIndustrial"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="6"
@@ -25,9 +25,9 @@
                 android:lines="1"
                 android:textColor="@color/blue"
                 android:drawableStart="@drawable/ic_baseline_search_24"
-                android:hint="Tên xưởng"/>
+                android:hint="Tên khu công nghiệp"/>
             <Button
-                android:id="@+id/btnSearchFactory"
+                android:id="@+id/btnSearch"
                 android:layout_marginLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -42,12 +42,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/revFactory"
+                android:id="@+id/revIndustrial"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-
             <ProgressBar
-                android:id="@+id/progressFactory"
+                android:id="@+id/progressIndustrial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
@@ -55,5 +54,7 @@
                 android:layout_centerHorizontal="true"
                 android:indeterminate="true" />
         </RelativeLayout>
+
+
     </LinearLayout>
 </layout>
