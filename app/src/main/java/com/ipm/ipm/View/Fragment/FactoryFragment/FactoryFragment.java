@@ -83,7 +83,7 @@ public class FactoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_factory, container, false);
-
+        binding.tvTenKCN.setText(industrial.getName());
         callApiFactories(page);
         if (factories == null) {
             factories = new ArrayList<>();

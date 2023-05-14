@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ipm.ipm.Model.Account;
 import com.ipm.ipm.Model.Contract;
+import com.ipm.ipm.Model.Industrial;
 import com.ipm.ipm.Model.Request.ChangePasswordRequest;
 import com.ipm.ipm.Model.Request.CreateContractRequest;
 import com.ipm.ipm.Model.Response.FactoriesResponse;
@@ -48,6 +49,9 @@ public interface ApiController {
     //industrials
     @GET("industrials")
     Call<IndustrialResponse> getIndustrials(@Query("page") int page);
+
+    @GET("industrials/{id}")
+    Call<Industrial> getIndustrialById(@Path("id") String id);
 
     @GET("industrials")
     Call<IndustrialResponse> searchIndustrial(@Query("search") String search);

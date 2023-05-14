@@ -6,8 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".View.MainActivity">
 
+    <ImageView
+        android:id="@+id/imgIcon"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/icon" />
     <FrameLayout
         android:id="@+id/container"
+        android:layout_below="@id/imgIcon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNav" />

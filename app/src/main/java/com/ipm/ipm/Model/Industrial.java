@@ -21,6 +21,23 @@ public class Industrial {
     @SerializedName("description")
     private String description;
 
+    @SerializedName("totalAcreage")
+    private int totalAcreage;
+
+    @SerializedName("factories")
+    private int factories;
+
+    public Industrial(String id, String name, String image, String address, String location, String description, int totalAcreage, int factories) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.address = address;
+        this.location = location;
+        this.description = description;
+        this.totalAcreage = totalAcreage;
+        this.factories = factories;
+    }
+
     public Industrial(String id, String name, String image, String address, String location, String description) {
         this.id = id;
         this.name = name;
@@ -28,6 +45,22 @@ public class Industrial {
         this.address = address;
         this.location = location;
         this.description = description;
+    }
+
+    public int getTotalAcreage() {
+        return totalAcreage;
+    }
+
+    public void setTotalAcreage(int totalAcreage) {
+        this.totalAcreage = totalAcreage;
+    }
+
+    public int getFactories() {
+        return factories;
+    }
+
+    public void setFactories(int factories) {
+        this.factories = factories;
     }
 
     public String getId() {

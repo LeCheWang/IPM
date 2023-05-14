@@ -106,6 +106,13 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        tvSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void refView() {

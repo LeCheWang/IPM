@@ -1,5 +1,12 @@
 package com.ipm.ipm.View.Fragment.IndustrialFragment;
 
+import android.app.Dialog;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,12 +18,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.ipm.ipm.Controller.ApiController;
+import com.ipm.ipm.Helper.ErrorHelper;
 import com.ipm.ipm.Model.Industrial;
 import com.ipm.ipm.Model.Response.IndustrialResponse;
 import com.ipm.ipm.R;
@@ -26,6 +41,7 @@ import com.ipm.ipm.databinding.FragmentIndustrialBinding;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -176,11 +192,89 @@ public class IndustrialFragment extends Fragment {
                     adapter.setiOnClickIndustrial(new IOnClickIndustrial() {
                         @Override
                         public void clickIndustrial(Industrial industrial) {
-                            getActivity()
-                                    .getSupportFragmentManager()
-                                    .beginTransaction().replace(R.id.container, new FactoryFragment(industrial))
-                                    .addToBackStack(null)
-                                    .commit();
+                            ApiController.apiService.getIndustrialById(industrial.getId()).enqueue(new Callback<Industrial>() {
+                                @Override
+                                public void onResponse(Call<Industrial> call, Response<Industrial> response) {
+                                    if (response.isSuccessful()){
+                                        Industrial industrial = response.body();
+                                        final Dialog dialog = new Dialog(getContext());
+                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                        dialog.setContentView(R.layout.dialog_infor_industrial);
+
+                                        Window window = dialog.getWindow();
+                                        if (window == null) {
+                                            return;
+                                        }
+                                        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                                        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                                        WindowManager.LayoutParams windowAtributes = window.getAttributes();
+                                        windowAtributes.gravity = Gravity.CENTER_VERTICAL;
+                                        window.setAttributes(windowAtributes);
+
+                                        dialog.setCancelable(true);
+
+                                        TextView tvTenKCN = dialog.findViewById(R.id.tvTenKCN);
+                                        ImageView imgDong = dialog.findViewById(R.id.imgDong);
+                                        TextView tvVitri = dialog.findViewById(R.id.tvViTri);
+                                        TextView tvTongDienTich = dialog.findViewById(R.id.tvTongDienTich);
+                                        TextView tvTongNX = dialog.findViewById(R.id.tvTongSoNX);
+                                        TextView tvMoTa = dialog.findViewById(R.id.tvMoTa);
+                                        ImageView imgAnh = dialog.findViewById(R.id.imgIndustrialImage);
+                                        TextView tvBanDo = dialog.findViewById(R.id.tvBanDo);
+                                        Button btnDsX = dialog.findViewById(R.id.btnDSXuong);
+
+                                        tvTenKCN.setText(industrial.getName());
+                                        tvVitri.setText(industrial.getAddress());
+                                        tvTongDienTich.setText(industrial.getTotalAcreage()*1.0/10000 + "ha");
+                                        tvTongNX.setText(industrial.getFactories() + " nhà xưởng");
+                                        tvMoTa.setText(industrial.getDescription());
+                                        Glide.with(getActivity()).load(industrial.getImage()).into(imgAnh);
+
+                                        tvBanDo.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                try{
+                                                    Uri mapUri = Uri.parse(industrial.getLocation());
+                                                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, mapUri);
+                                                    mapIntent.setPackage("com.google.android.apps.maps");
+                                                    startActivity(mapIntent);
+                                                } catch (Exception e){
+                                                    Toast.makeText(getActivity(), "Không định vị được. Vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+
+                                        imgDong.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+
+                                        btnDsX.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                getActivity()
+                                                        .getSupportFragmentManager()
+                                                        .beginTransaction().replace(R.id.container, new FactoryFragment(industrial))
+                                                        .addToBackStack(null)
+                                                        .commit();
+                                                dialog.dismiss();
+                                            }
+                                        });
+
+                                        dialog.show();
+                                    }else {
+                                        ErrorHelper.toastError(getActivity(), response.errorBody());
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Industrial> call, Throwable t) {
+                                    Toast.makeText(getActivity(), "lỗi đường truyền", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
                     });
                 } else {

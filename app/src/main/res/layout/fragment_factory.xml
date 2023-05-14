@@ -8,6 +8,16 @@
         android:layout_margin="5dp"
         android:orientation="vertical"
         tools:context=".View.Fragment.IndustrialFragment.IndustrialFragment">
+        <TextView
+            android:id="@+id/tvTenKCN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="Khu công nghiệp Hòa Phú"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="6"
                 android:background="@drawable/boder_radius_input"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:padding="6dp"
                 android:ellipsize="end"
                 android:lines="1"
