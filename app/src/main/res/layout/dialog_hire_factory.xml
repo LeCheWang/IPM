@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -42,25 +42,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="110dp"
                 android:text="Khu xưởng 1"
                 android:textColor="@color/black"
-                android:textSize="23dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvStatusFactory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/fr_stt_0"
-                android:padding="5dp"
-                android:text="Chưa thuê"
-                android:textColor="@color/text_factory_status_0"
-                android:textSize="23dp" />
         </RelativeLayout>
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -70,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:text="Điện tích: "
                 android:textColor="@color/black"
-                android:textSize="23dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -79,139 +70,148 @@
                 android:layout_height="wrap_content"
                 android:text="200m2"
                 android:textColor="@color/black"
-                android:textSize="23dp" />
+                android:textSize="20dp" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
             android:layout_marginTop="10dp"
-            android:drawableRight="@drawable/ic_baseline_star_border_purple500_24"
-            android:text="Họ tên"
-            android:textColor="@color/black"
-            android:textSize="23dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/edtFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/boder_radius_input"
-            android:drawableTint="@color/blue"
-            android:padding="7dp"
-            android:inputType="none"
-            android:textColor="@color/blue"
-            android:textSize="23dp" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Họ tên: "
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvFullName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_marginTop="10dp"
-            android:drawableRight="@drawable/ic_baseline_star_border_purple500_24"
-            android:text="Email"
-            android:textColor="@color/black"
-            android:textSize="23dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/boder_radius_input"
-            android:drawableTint="@color/blue"
-            android:padding="7dp"
-            android:inputType="none"
-            android:textColor="@color/blue"
-            android:textSize="23dp" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số điện thoại liên hệ: "
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0123456789"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_marginTop="10dp"
-            android:drawableRight="@drawable/ic_baseline_star_border_purple500_24"
-            android:text="SĐT liên hệ"
-            android:textColor="@color/black"
-            android:textSize="23dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/edtPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/boder_radius_input"
-            android:drawableTint="@color/blue"
-            android:padding="7dp"
-            android:inputType="none"
-            android:textColor="@color/blue"
-            android:textSize="23dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:drawableRight="@drawable/ic_baseline_star_border_purple500_24"
-            android:text="Thời gian bắt đầu"
-            android:textColor="@color/black"
-            android:textSize="23dp"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/edtStartAt"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tiền cọc: "
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvDeposit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="35.000.000 VNĐ"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/boder_radius_input"
-            android:drawableTint="@color/blue"
-            android:drawableRight="@drawable/ic_baseline_date_range_24"
-            android:padding="7dp"
-            android:textColor="@color/blue"
-            android:textSize="23dp" />
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bắt đầu thuê"
+                    android:lines="1"
+                    android:ellipsize="middle"
+                    android:drawableRight="@drawable/ic_baseline_star_border_purple500_24"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:drawableRight="@drawable/ic_baseline_star_border_purple500_24"
-            android:text="Thời hạn thuê"
-            android:textColor="@color/black"
-            android:textSize="23dp"
-            android:textStyle="bold" />
+                <EditText
+                    android:id="@+id/edtStartAt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/boder_radius_input"
+                    android:drawableTint="@color/blue"
+                    android:drawableRight="@drawable/ic_baseline_date_range_24"
+                    android:padding="5dp"
+                    android:textColor="@color/blue"
+                    android:textSize="20dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.8"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thời hạn thuê"
+                    android:ellipsize="middle"
+                    android:lines="1"
+                    android:drawableRight="@drawable/ic_baseline_star_border_purple500_24"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/edtEndAt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/boder_radius_input"
-            android:drawableTint="@color/blue"
-            android:padding="7dp"
-            android:text="3"
-            android:textColor="@color/blue"
-            android:textSize="23dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:drawableRight="@drawable/ic_baseline_star_border_purple500_24"
-            android:text="Thanh toán tiền cọc"
-            android:textColor="@color/black"
-            android:textSize="23dp"
-            android:textStyle="bold" />
+                <EditText
+                    android:id="@+id/edtEndAt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/boder_radius_input"
+                    android:drawableTint="@color/blue"
+                    android:drawableRight="@drawable/ic_baseline_date_range_24"
+                    android:padding="5dp"
+                    android:textColor="@color/blue"
+                    android:textSize="20dp" />
+            </LinearLayout>
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/edtDeposit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/boder_radius_input"
-            android:drawableTint="@color/blue"
-            android:padding="7dp"
-            android:inputType="none"
-            android:textColor="@color/blue"
-            android:drawableRight="@drawable/ic_baseline_attach_money_24"
-            android:textSize="23dp" />
+
         <Button
             android:id="@+id/btnHireFactory"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Thuê nhà xưởng"
-            android:backgroundTint="@color/blue"/>
+            android:backgroundTint="@color/blue"
+            android:text="Thuê nhà xưởng" />
     </LinearLayout>
 </ScrollView>

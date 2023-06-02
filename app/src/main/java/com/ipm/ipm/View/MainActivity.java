@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 
 import com.ipm.ipm.R;
+import com.ipm.ipm.View.Fragment.ContractFragment.ContractFragment;
 import com.ipm.ipm.View.Fragment.IndustrialFragment.IndustrialFragment;
 import com.ipm.ipm.View.Fragment.HomeFragment.HomeFragment;
 import com.ipm.ipm.View.Fragment.UserFragment.UserFragment;
@@ -38,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.industrial:
                     fragment = new IndustrialFragment();
+                    break;
+                case R.id.contract:
+                    fragment = new ContractFragment();
                     break;
                 case R.id.user:
                     fragment = new UserFragment();

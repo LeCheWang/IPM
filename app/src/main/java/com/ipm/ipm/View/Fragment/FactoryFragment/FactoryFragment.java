@@ -67,11 +67,9 @@ public class FactoryFragment extends Fragment {
         this.industrial = industrial;
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     FragmentFactoryBinding binding;
@@ -213,35 +211,13 @@ public class FactoryFragment extends Fragment {
         dialog.setCancelable(true);
         ImageView imgClose = dialog.findViewById(R.id.imgClose);
         TextView tvNameFactory = dialog.findViewById(R.id.tvNameFactory);
-        TextView tvStatusFactory = dialog.findViewById(R.id.tvStatusFactory);
         TextView tvAreaFactory = dialog.findViewById(R.id.tvAreaFactory);
-        EditText edtFullName = dialog.findViewById(R.id.edtFullName);
-        EditText edtEmail = dialog.findViewById(R.id.edtEmail);
-        EditText edtPhone = dialog.findViewById(R.id.edtPhone);
+        TextView tvFullName = dialog.findViewById(R.id.tvFullName);
+        TextView tvPhone = dialog.findViewById(R.id.tvPhone);
+        TextView tvDeposit = dialog.findViewById(R.id.tvDeposit);
         EditText edtStartAt = dialog.findViewById(R.id.edtStartAt);
         EditText edtEndAt = dialog.findViewById(R.id.edtEndAt);
-        EditText edtDeposit = dialog.findViewById(R.id.edtDeposit);
         Button btnHireFactory = dialog.findViewById(R.id.btnHireFactory);
-
-        switch (factory.getStatus()) {
-            case "0":
-                tvStatusFactory.setBackgroundResource(R.drawable.fr_stt_0);
-                tvStatusFactory.setTextColor(R.color.text_factory_status_0);
-                tvStatusFactory.setText("Chưa thuê");
-                break;
-            case "1":
-                tvStatusFactory.setBackgroundResource(R.drawable.fr_stt_1);
-                tvStatusFactory.setTextColor(R.color.text_factory_status_1);
-                tvStatusFactory.setText("Chờ duyệt");
-                break;
-            case "2":
-                tvStatusFactory.setBackgroundResource(R.drawable.fr_stt_2);
-                tvStatusFactory.setTextColor(R.color.text_factory_status_2);
-                tvStatusFactory.setText("Đã thuê");
-                break;
-            default:
-                break;
-        }
 
         imgClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -255,9 +231,8 @@ public class FactoryFragment extends Fragment {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
                 if (response.isSuccessful()) {
-                    edtFullName.setText(response.body().getFullname());
-                    edtEmail.setText(response.body().getEmail());
-                    edtPhone.setText(response.body().getPhone());
+                    tvFullName.setText(response.body().getFullname());
+                    tvPhone.setText(response.body().getPhone());
                 } else {
                     String err = "";
                     try {
@@ -279,16 +254,18 @@ public class FactoryFragment extends Fragment {
         tvNameFactory.setText(factory.getName());
         tvAreaFactory.setText(factory.getAcreage() + " m2");
 
-        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, 1); //thêm 1 ngày
+        Date date = calendar.getTime();
+        String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(date);
         edtStartAt.setText(currentDate + "");
 
-        Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MONTH, 3); // thêm 3 tháng
-        Date date = calendar.getTime();
-        String dateEnd = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(date);
+        Date date2 = calendar.getTime();
+        String dateEnd = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(date2);
         edtEndAt.setText(dateEnd + "");
 
-        edtDeposit.setText(CurrencyFormatter.formatVND(factory.getPrice()));
+        tvDeposit.setText(CurrencyFormatter.formatVND(factory.getPrice()));
 
         btnHireFactory.setOnClickListener(new View.OnClickListener() {
             @Override

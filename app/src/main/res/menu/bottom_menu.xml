@@ -5,25 +5,32 @@
 
     <item
         android:id="@+id/home"
+        android:icon="@drawable/ic_baseline_home_24"
         android:title="Trang Chủ"
-        app:cnb_textColor="@color/blue"
-        app:cnb_iconColor="@color/blue"
         app:cnb_backgroundColor="#fff"
-        android:icon="@drawable/ic_baseline_home_24"/>
+        app:cnb_iconColor="@color/blue"
+        app:cnb_textColor="@color/blue" />
 
     <item
         android:id="@+id/industrial"
+        android:icon="@drawable/ic_baseline_maps_home_work_24"
         android:title="KCN"
-        app:cnb_textColor="@color/blue"
-        app:cnb_iconColor="@color/blue"
         app:cnb_backgroundColor="#fff"
-        android:icon="@drawable/ic_baseline_maps_home_work_24"/>
+        app:cnb_iconColor="@color/blue"
+        app:cnb_textColor="@color/blue" />
+    <item
+        android:id="@+id/contract"
+        android:icon="@drawable/my_factory_icon"
+        android:title="Xưởng"
+        app:cnb_backgroundColor="#fff"
+        app:cnb_iconColor="@color/blue"
+        app:cnb_textColor="@color/blue" />
 
     <item
         android:id="@+id/user"
+        android:icon="@drawable/ic_baseline_person_24"
         android:title="Tài khoản"
-        app:cnb_textColor="@color/blue"
-        app:cnb_iconColor="@color/blue"
         app:cnb_backgroundColor="#fff"
-        android:icon="@drawable/ic_baseline_person_24"/>
+        app:cnb_iconColor="@color/blue"
+        app:cnb_textColor="@color/blue" />
 </menu>

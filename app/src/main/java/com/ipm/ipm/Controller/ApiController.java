@@ -7,6 +7,7 @@ import com.ipm.ipm.Model.Contract;
 import com.ipm.ipm.Model.Industrial;
 import com.ipm.ipm.Model.Request.ChangePasswordRequest;
 import com.ipm.ipm.Model.Request.CreateContractRequest;
+import com.ipm.ipm.Model.Response.ContractResponse.ContractResponse;
 import com.ipm.ipm.Model.Response.FactoriesResponse;
 import com.ipm.ipm.Model.Response.IndustrialResponse;
 import com.ipm.ipm.Model.Response.LoginResponse;
@@ -68,4 +69,7 @@ public interface ApiController {
     //contract
     @POST("contracts")
     Call<Contract> createContract(@Header("Authorization") String jwt, @Body() CreateContractRequest contract);
+
+    @GET("contracts")
+    Call<ContractResponse> getMyContract(@Header("Authorization") String jwt, @Query("page") int page);
 }
