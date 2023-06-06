@@ -1,5 +1,6 @@
 package com.ipm.ipm.Model.Response.ContractResponse;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.ipm.ipm.Model.Industrial;
 
@@ -22,6 +23,7 @@ public class Factory2 {
     @SerializedName("price")
     private long price;
 
+    @Expose()
     @SerializedName("idIndustrial")
     private Industrial idIndustrial;
 

@@ -1,5 +1,6 @@
 package com.ipm.ipm.Model.Response.ContractResponse;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.ipm.ipm.Model.Contract;
 
@@ -15,6 +16,7 @@ public class ContractResponse {
     @SerializedName("per_page")
     private int per_page;
 
+    @Expose()
     @SerializedName("contractes")
     private List<Contract2> contractes;
 

@@ -48,7 +48,7 @@ public interface ApiController {
     Call<Account> changePassword(@Header("Authorization") String jwt, @Body() ChangePasswordRequest passwordRequest);
 
     //industrials
-    @GET("industrials")
+    @POST("industrials/get-all")
     Call<IndustrialResponse> getIndustrials(@Query("page") int page);
 
     @GET("industrials/{id}")
@@ -58,7 +58,7 @@ public interface ApiController {
     Call<IndustrialResponse> searchIndustrial(@Query("search") String search);
 
     //factories
-    @GET("factories/industrial/{id}")
+    @POST("factories/industrials/{id}")
     Call<FactoriesResponse> getFactoriesOfIndustrial(@Path("id") String id, @Query("page") int page);
 
     @GET("factories/industrial/{id}")

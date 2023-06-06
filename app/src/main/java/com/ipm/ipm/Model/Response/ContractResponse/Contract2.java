@@ -1,5 +1,6 @@
 package com.ipm.ipm.Model.Response.ContractResponse;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Contract2 {
@@ -9,6 +10,7 @@ public class Contract2 {
     @SerializedName("idUser")
     private String idUser;
 
+    @Expose()
     @SerializedName("idFactory")
     private Factory2 idFactory;
 
