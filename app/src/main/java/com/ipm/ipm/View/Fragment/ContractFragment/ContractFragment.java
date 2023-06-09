@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +42,7 @@ public class ContractFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
+
     List<String> kcn;
     String kcnSelect = "All";
     String[] status = {"All", "Chưa thuê", "Chờ duyệt", "Đã thuê"};
@@ -49,6 +52,7 @@ public class ContractFragment extends Fragment {
     ContractAdapter contractAdapter;
 
     FragmentContractBinding binding;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,26 +64,56 @@ public class ContractFragment extends Fragment {
         showSpinnerStatus();
         showContracts(1);
 
+        binding.edtSearchIndustrial.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (contractAdapter != null) {
+                    String name = editable.toString();
+                    List<Contract2> newContract2s = new ArrayList<>();
+                    for (int i = 0; i < contract2s.size(); i++) {
+                        try {
+                            if (contract2s.get(i).getIdFactory().getIdIndustrial().getName().contains(name)) {
+                                newContract2s.add(contract2s.get(i));
+                            }
+                        } catch (Exception er) {
+                            Toast.makeText(getActivity(), "Có lỗi xảy ra trong quá trình phát triển", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    contractAdapter.setContract2s(newContract2s);
+                }
+            }
+        });
+
         return binding.getRoot();
     }
 
     private void showContracts(int page) {
-        ApiController.apiService.getMyContract("Bearer "+ jwt, page).enqueue(new Callback<ContractResponse>() {
+        ApiController.apiService.getMyContract("Bearer " + jwt, page).enqueue(new Callback<ContractResponse>() {
             @Override
             public void onResponse(Call<ContractResponse> call, Response<ContractResponse> response) {
-                if (response.isSuccessful()){
-                    if (page==1){
+                if (response.isSuccessful()) {
+                    if (page == 1) {
                         contract2s = response.body().getContractes();
                         contractAdapter = new ContractAdapter(contract2s, getActivity());
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
                         binding.revContract.setLayoutManager(layoutManager);
                         binding.revContract.setAdapter(contractAdapter);
                     }
-                    for (Contract2 c: response.body().getContractes()){
+                    for (Contract2 c : response.body().getContractes()) {
                         kcn.add(c.getIdFactory().getIdIndustrial().getName());
                     }
                     showSpinnerKcn();
-                }else {
+                } else {
                     ErrorHelper.toastError(getActivity(), response.errorBody());
                 }
             }
@@ -95,7 +129,19 @@ public class ContractFragment extends Fragment {
         binding.spnStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                statusSelect= status[position];
+                if (contractAdapter != null) {
+                    statusSelect = status[position];
+                    List<Contract2> newContract2s = new ArrayList<>();
+                    if (position == 0) {
+                        newContract2s = contract2s;
+                    } else
+                        for (int i = 0; i < contract2s.size(); i++) {
+                            if (contract2s.get(i).getIsStatusAccepted() == (position - 1)) {
+                                newContract2s.add(contract2s.get(i));
+                            }
+                        }
+                    contractAdapter.setContract2s(newContract2s);
+                }
             }
 
             @Override
@@ -113,7 +159,23 @@ public class ContractFragment extends Fragment {
         binding.spnKCN.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                kcnSelect= kcn.get(position);
+                if (contractAdapter != null) {
+                    kcnSelect = kcn.get(position);
+                    List<Contract2> newContract2s = new ArrayList<>();
+                    if (position == 0) {
+                        newContract2s = contract2s;
+                    } else
+                        for (int i = 0; i < contract2s.size(); i++) {
+                            try {
+                                if (contract2s.get(i).getIdFactory().getIdIndustrial().getName().equalsIgnoreCase(kcnSelect)) {
+                                    newContract2s.add(contract2s.get(i));
+                                }
+                            } catch (Exception er) {
+                                Toast.makeText(getActivity(), "Có lỗi xảy ra trong quá trình phát triển", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    contractAdapter.setContract2s(newContract2s);
+                }
             }
 
             @Override

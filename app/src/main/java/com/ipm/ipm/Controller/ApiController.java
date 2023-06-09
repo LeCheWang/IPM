@@ -48,21 +48,21 @@ public interface ApiController {
     Call<Account> changePassword(@Header("Authorization") String jwt, @Body() ChangePasswordRequest passwordRequest);
 
     //industrials
+    @GET("industrials/get-all-not-paging")
+    Call<IndustrialResponse> searchIndustrial(@Query("search") String search);
+
     @POST("industrials/get-all")
-    Call<IndustrialResponse> getIndustrials(@Query("page") int page);
+    Call<IndustrialResponse> getIndustrials(@Query("page") int page, @Query("search") String search);
 
     @GET("industrials/{id}")
     Call<Industrial> getIndustrialById(@Path("id") String id);
 
-    @GET("industrials")
-    Call<IndustrialResponse> searchIndustrial(@Query("search") String search);
-
     //factories
     @POST("factories/industrials/{id}")
-    Call<FactoriesResponse> getFactoriesOfIndustrial(@Path("id") String id, @Query("page") int page);
+    Call<FactoriesResponse> getFactoriesOfIndustrial(@Path("id") String id, @Query("page") int page, @Query("search") String search);
 
-    @GET("factories/industrial/{id}")
-    Call<FactoriesResponse> searchFactories(@Path("id") String id, @Query("search") String search);
+//    @GET("factories/industrial/{id}")
+//    Call<FactoriesResponse> searchFactories(@Path("id") String id, @Query("search") String search);
 
 
 

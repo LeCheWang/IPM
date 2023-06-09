@@ -145,7 +145,7 @@ public class IndustrialFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 String key = editable.toString();
-                ApiController.apiService.searchIndustrial(key).enqueue(new Callback<IndustrialResponse>() {
+                ApiController.apiService.getIndustrials(1, key).enqueue(new Callback<IndustrialResponse>() {
                     @Override
                     public void onResponse(Call<IndustrialResponse> call, Response<IndustrialResponse> response) {
                         if (response.isSuccessful()) {
@@ -175,7 +175,7 @@ public class IndustrialFragment extends Fragment {
     }
 
     private void callApiIndustrial(int page) {
-        ApiController.apiService.getIndustrials(page).enqueue(new Callback<IndustrialResponse>() {
+        ApiController.apiService.getIndustrials(page, "").enqueue(new Callback<IndustrialResponse>() {
             @Override
             public void onResponse(Call<IndustrialResponse> call, Response<IndustrialResponse> response) {
                 if (response.isSuccessful()) {

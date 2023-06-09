@@ -101,7 +101,7 @@ public class FactoryFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 String key = editable.toString();
-                ApiController.apiService.searchFactories(industrial.getId(), key).enqueue(new Callback<FactoriesResponse>() {
+                ApiController.apiService.getFactoriesOfIndustrial(industrial.getId(), 1, key).enqueue(new Callback<FactoriesResponse>() {
                     @Override
                     public void onResponse(Call<FactoriesResponse> call, Response<FactoriesResponse> response) {
                         if (response.isSuccessful()) {
@@ -150,7 +150,7 @@ public class FactoryFragment extends Fragment {
     }
 
     private void callApiFactories(int page) {
-        ApiController.apiService.getFactoriesOfIndustrial(industrial.getId(), page).enqueue(new Callback<FactoriesResponse>() {
+        ApiController.apiService.getFactoriesOfIndustrial(industrial.getId(), page, "").enqueue(new Callback<FactoriesResponse>() {
             @Override
             public void onResponse(Call<FactoriesResponse> call, Response<FactoriesResponse> response) {
                 if (response.isSuccessful()) {

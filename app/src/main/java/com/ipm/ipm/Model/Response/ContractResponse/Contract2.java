@@ -2,13 +2,14 @@ package com.ipm.ipm.Model.Response.ContractResponse;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.ipm.ipm.Model.Account;
 
 public class Contract2 {
     @SerializedName("_id")
     private String id;
 
     @SerializedName("idUser")
-    private String idUser;
+    private Account idUser;
 
     @Expose()
     @SerializedName("idFactory")
@@ -32,7 +33,10 @@ public class Contract2 {
     @SerializedName("createdAt")
     private String createdAt;
 
-    public Contract2(String id, String idUser, Factory2 idFactory, String startDate, String endDate, int deposit, int isAccepted, int isFinished, String createdAt) {
+    @SerializedName("isStatusAccepted")
+    private int isStatusAccepted;
+
+    public Contract2(String id, Account idUser, Factory2 idFactory, String startDate, String endDate, int deposit, int isAccepted, int isFinished, String createdAt, int isStatusAccepted) {
         this.id = id;
         this.idUser = idUser;
         this.idFactory = idFactory;
@@ -42,6 +46,15 @@ public class Contract2 {
         this.isAccepted = isAccepted;
         this.isFinished = isFinished;
         this.createdAt = createdAt;
+        this.isStatusAccepted = isStatusAccepted;
+    }
+
+    public int getIsStatusAccepted() {
+        return isStatusAccepted;
+    }
+
+    public void setIsStatusAccepted(int isStatusAccepted) {
+        this.isStatusAccepted = isStatusAccepted;
     }
 
     public String getId() {
@@ -52,11 +65,11 @@ public class Contract2 {
         this.id = id;
     }
 
-    public String getIdUser() {
+    public Account getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(String idUser) {
+    public void setIdUser(Account idUser) {
         this.idUser = idUser;
     }
 
