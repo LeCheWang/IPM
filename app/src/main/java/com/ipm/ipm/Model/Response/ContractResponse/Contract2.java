@@ -22,7 +22,7 @@ public class Contract2 {
     private String endDate;
 
     @SerializedName("deposit")
-    private int deposit;
+    private float deposit;
 
     @SerializedName("isAccepted")
     private int isAccepted;
@@ -36,7 +36,7 @@ public class Contract2 {
     @SerializedName("isStatusAccepted")
     private int isStatusAccepted;
 
-    public Contract2(String id, Account idUser, Factory2 idFactory, String startDate, String endDate, int deposit, int isAccepted, int isFinished, String createdAt, int isStatusAccepted) {
+    public Contract2(String id, Account idUser, Factory2 idFactory, String startDate, String endDate, float deposit, int isAccepted, int isFinished, String createdAt, int isStatusAccepted) {
         this.id = id;
         this.idUser = idUser;
         this.idFactory = idFactory;
@@ -97,11 +97,11 @@ public class Contract2 {
         this.endDate = endDate;
     }
 
-    public int getDeposit() {
+    public float getDeposit() {
         return deposit;
     }
 
-    public void setDeposit(int deposit) {
+    public void setDeposit(float deposit) {
         this.deposit = deposit;
     }
 

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -120,6 +121,7 @@ public class ContractFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ContractResponse> call, Throwable t) {
+                Log.d("ab", "onFailure: " + t.getMessage());
                 Toast.makeText(getActivity(), "network error", Toast.LENGTH_SHORT).show();
             }
         });
